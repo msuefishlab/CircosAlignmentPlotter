@@ -306,6 +306,7 @@ def makeKaryotype(out, dAln, targets_to_plot, target_fasta, query_fasta, corresp
     return show_up_ideograms
 
 def makeLinks(outdir, dAln, targets_to_plot, min_align_length, correspondance) :
+    ##jg converting to single line links for downstream compatibility
     o_t = open(os.path.join(outdir, "links.txt"), "w")
     # For self alignments: must remember coords and check if reverted
     pairs = []
@@ -316,10 +317,8 @@ def makeLinks(outdir, dAln, targets_to_plot, min_align_length, correspondance) :
         for n, aln in enumerate(dAln[target.name]) :
             if aln.length < min_align_length :
                 continue
-            link1 = "link{} {} {} {}".format(str(p)+"_"+str(n), target.tag, aln.T_start, aln.T_end)
-            o_t.write(link1+"\n")
-            link2 = "link{} {} {} {}".format(str(p)+"_"+str(n), correspondance[aln.query], aln.Q_start, aln.Q_end)
-            o_t.write(link2+"\n")
+            link = "{} {} {} {} {} {}".format(target.tag, aln.T_start, aln.T_end, correspondance[aln.query], aln.Q_start, aln.Q_end)
+            o_t.write(link+"\n")
             pairs.append(Coords(target.name, aln.T_start, aln.T_end, aln.query, aln.Q_start, aln.Q_end))
     o_t.close()
 
