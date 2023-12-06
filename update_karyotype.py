@@ -28,6 +28,10 @@ def replace_identifiers(karyotype_lines, chr_details):
             new_identifier, species = chr_details[identifier]
             parts[3] = new_identifier
             chr_number = new_identifier.split('_')[-1]
+            if chr_number=="chr24":
+                chr_number="chrx"
+            elif chr_number=="chr25":
+                chr_number="chry"
             parts[-1] = chr_number
             updated_line = ' '.join(parts)
             av_chr_pairs.append((av_value, chr_number))  # Store av-chr pair
