@@ -404,11 +404,8 @@ def plotPAF(dAln, outdir, tpl, query_fasta, target_fasta, correspondance, min_al
     # OPTIONAL : add SNPs
     # TODO
 
-    # 4. Run circos
-    os.chdir(os.path.join(outdir))
-    cmd = "circos"
-    run(cmd)
-    os.chdir(cwd)
+    # 5. Run circos
+    print("Output Files Generated, Ready to Run Circos!")
 
 def run(cmd) :
     print("Running circos in {}".format(os.getcwd()))
